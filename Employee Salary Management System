@@ -1,0 +1,65 @@
+import java.io.*;
+
+public class EmployeeSalary {
+
+    public static void main(String args[]) throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("Enter Number of Employees: ");
+        int n = Integer.parseInt(br.readLine());
+
+        int id[] = new int[n];
+        String name[] = new String[n];
+        double basic[] = new double[n];
+        double net[] = new double[n];
+
+        double totalSalary = 0;
+
+        for (int i = 0; i < n; i++) {
+
+            System.out.println("\nEmployee " + (i + 1));
+
+            System.out.print("ID: ");
+            id[i] = Integer.parseInt(br.readLine());
+
+            System.out.print("Name: ");
+            name[i] = br.readLine();
+
+            System.out.print("Basic Salary: ");
+            basic[i] = Double.parseDouble(br.readLine());
+
+            double da = basic[i] * 0.40;
+            double hra = basic[i] * 0.20;
+            double pf = basic[i] * 0.12;
+
+            double gross = basic[i] + da + hra;
+            net[i] = gross - pf;
+
+            totalSalary += net[i];
+        }
+
+        int highest = 0;
+        int lowest = 0;
+
+        for (int i = 1; i < n; i++) {
+
+            if (net[i] > net[highest])
+                highest = i;
+
+            if (net[i] < net[lowest])
+                lowest = i;
+        }
+
+        System.out.println("\n");
+        System.out.println("ID\tName\tBasic\tNet Salary");
+
+        for (int i = 0; i < n; i++) {
+            System.out.println(id[i] + "\t" + name[i] + "\t" + basic[i] + "\t" + net[i]);
+        }
+
+        System.out.println("\nHighest Paid Employee : " + name[highest]);
+        System.out.println("Lowest Paid Employee  : " + name[lowest]);
+        System.out.println("Average Salary        : " + (totalSalary / n));
+    }
+}
