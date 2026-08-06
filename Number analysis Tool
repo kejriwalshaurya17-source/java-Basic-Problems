@@ -1,0 +1,114 @@
+import java.io.*;
+
+public class NumberAnalysis {
+
+    static boolean isPrime(int n) {
+        if (n <= 1)
+            return false;
+
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0)
+                return false;
+        }
+        return true;
+    }
+
+    static boolean isPalindrome(int n) {
+        int temp = n, rev = 0;
+
+        while (temp > 0) {
+            rev = rev * 10 + temp % 10;
+            temp /= 10;
+        }
+
+        return rev == n;
+    }
+
+    static boolean isArmstrong(int n) {
+        int temp = n, sum = 0;
+
+        while (temp > 0) {
+            int r = temp % 10;
+            sum += r * r * r;
+            temp /= 10;
+        }
+
+        return sum == n;
+    }
+
+    static int sumDigits(int n) {
+        int sum = 0;
+
+        while (n > 0) {
+            sum += n % 10;
+            n /= 10;
+        }
+
+        return sum;
+    }
+
+    static int reverse(int n) {
+        int rev = 0;
+
+        while (n > 0) {
+            rev = rev * 10 + n % 10;
+            n /= 10;
+        }
+
+        return rev;
+    }
+
+    public static void main(String args[]) throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("Enter Number: ");
+        int num = Integer.parseInt(br.readLine());
+
+        int choice;
+
+        do {
+
+            System.out.println("\n1.Prime");
+            System.out.println("2.Palindrome");
+            System.out.println("3.Armstrong");
+            System.out.println("4.Sum of Digits");
+            System.out.println("5.Reverse");
+            System.out.println("6.Exit");
+
+            System.out.print("Enter Choice: ");
+            choice = Integer.parseInt(br.readLine());
+
+            switch (choice) {
+
+                case 1:
+                    System.out.println(isPrime(num) ? "Prime" : "Not Prime");
+                    break;
+
+                case 2:
+                    System.out.println(isPalindrome(num) ? "Palindrome" : "Not Palindrome");
+                    break;
+
+                case 3:
+                    System.out.println(isArmstrong(num) ? "Armstrong" : "Not Armstrong");
+                    break;
+
+                case 4:
+                    System.out.println("Sum = " + sumDigits(num));
+                    break;
+
+                case 5:
+                    System.out.println("Reverse = " + reverse(num));
+                    break;
+
+                case 6:
+                    System.out.println("Program Ended");
+                    break;
+
+                default:
+                    System.out.println("Invalid Choice");
+            }
+
+        } while (choice != 6);
+    }
+}
