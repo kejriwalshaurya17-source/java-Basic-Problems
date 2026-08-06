@@ -1,0 +1,42 @@
+import java.io.*;
+
+public class StudentGradeCalculator {
+    public static void main(String args[]) throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int total = 0;
+
+        System.out.println("Enter marks of 5 subjects:");
+
+        for (int i = 1; i <= 5; i++) {
+            System.out.print("Subject " + i + ": ");
+            total += Integer.parseInt(br.readLine());
+        }
+
+        double percentage = total / 5.0;
+        String grade;
+
+        if (percentage >= 90)
+            grade = "A+";
+        else if (percentage >= 80)
+            grade = "A";
+        else if (percentage >= 70)
+            grade = "B";
+        else if (percentage >= 60)
+            grade = "C";
+        else if (percentage >= 50)
+            grade = "D";
+        else
+            grade = "Fail";
+
+        System.out.println("\nTotal Marks = " + total);
+        System.out.println("Percentage = " + percentage + "%");
+        System.out.println("Grade = " + grade);
+
+        if (percentage >= 50)
+            System.out.println("Result : Pass");
+        else
+            System.out.println("Result : Fail");
+    }
+}
