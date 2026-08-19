@@ -1,0 +1,77 @@
+import java.util.Scanner;
+
+class Student
+{
+    int rollNo;
+    String name;
+    double marks1,marks2,marks3;
+
+    void accept()
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter Roll No: ");
+        rollNo=sc.nextInt();
+        sc.nextLine();
+        System.out.print("Enter Name: ");
+        name=sc.nextLine();
+        System.out.print("Enter Marks 1: ");
+        marks1=sc.nextDouble();
+        System.out.print("Enter Marks 2: ");
+        marks2=sc.nextDouble();
+        System.out.print("Enter Marks 3: ");
+        marks3=sc.nextDouble();
+    }
+
+    double total()
+    {
+        return marks1+marks2+marks3;
+    }
+
+    double percentage()
+    {
+        return total()/3;
+    }
+
+    void display()
+    {
+        double p=percentage();
+        System.out.println("Roll No: "+rollNo);
+        System.out.println("Name: "+name);
+        System.out.println("Total Marks: "+total());
+        System.out.println("Percentage: "+p+"%");
+
+        if(p>=90)
+            System.out.println("Grade: A+");
+        else if(p>=80)
+            System.out.println("Grade: A");
+        else if(p>=70)
+            System.out.println("Grade: B");
+        else if(p>=60)
+            System.out.println("Grade: C");
+        else if(p>=50)
+            System.out.println("Grade: D");
+        else
+            System.out.println("Grade: F");
+    }
+}
+
+class StudentResult
+{
+    public static void main(String args[])
+    {
+        Student s1=new Student();
+        Student s2=new Student();
+
+        System.out.println("Enter Details of Student 1");
+        s1.accept();
+
+        System.out.println("\nEnter Details of Student 2");
+        s2.accept();
+
+        System.out.println("\nStudent 1 Result");
+        s1.display();
+
+        System.out.println("\nStudent 2 Result");
+        s2.display();
+    }
+}
